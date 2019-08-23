@@ -7,7 +7,7 @@ const NoteApp = () => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
-  // тут происходит добавление нового города + запрос по нему
+  // тут происходит добавление нового города
   const addNote = e => {
     e.preventDefault()
     setNotes([
