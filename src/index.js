@@ -20,27 +20,28 @@ const NoteApp = () => {
 
   const removeNote = title => setNotes(notes.filter(note => note.title !== title))
 
+  // получить все данные из localStorage и сделать по ним запросы
   useEffect(() => {
-    async function getWeather() {
-      let response = await fetch('http://api.apixu.com/v1/current.json?key=3403e434b70842f5902100116190307&q=Moscow')
-      let data = await response.json()
-      let town = data.location.name
-      let pic = data.current.condition.icon
-      let goodPic = pic.substr(2, pic.length -2)
-      let currentWeatherC = data.current.temp_c
+    // async function getWeather() {
+    //   let response = await fetch('http://api.apixu.com/v1/current.json?key=3403e434b70842f5902100116190307&q=Moscow')
+    //   let data = await response.json()
+    //   let town = data.location.name
+    //   let pic = data.current.condition.icon
+    //   let goodPic = pic.substr(2, pic.length -2)
+    //   let currentWeatherC = data.current.temp_c
 
-      console.log(town)
-      console.log(goodPic)
-      console.log(currentWeatherC)
-      console.log(data)
-    }
-    getWeather()
-
-    //const notesData = JSON.parse(localStorage.getItem('notes'))
-
-    // if (notesData) {
-    //   setNotes(notesData)
+    //   console.log(town)
+    //   console.log(goodPic)
+    //   console.log(currentWeatherC)
+    //   console.log(data)
     // }
+    // getWeather()
+
+    const notesData = JSON.parse(localStorage.getItem('notes'))
+
+    if (notesData) {
+      setNotes(notesData)
+    }
   }, [])
 
   useEffect(() => {
