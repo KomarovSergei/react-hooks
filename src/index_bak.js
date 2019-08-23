@@ -7,7 +7,6 @@ const NoteApp = () => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
-  // тут происходит добавление нового города + запрос по нему
   const addNote = e => {
     e.preventDefault()
     setNotes([
@@ -18,7 +17,8 @@ const NoteApp = () => {
     setBody('')
   }
 
-  const removeNote = title => setNotes(notes.filter(note => note.title !== title))
+  const removeNote = title => 
+    setNotes(notes.filter(note => note.title !== title))
 
   useEffect(() => {
     async function getWeather() {
@@ -36,11 +36,11 @@ const NoteApp = () => {
     }
     getWeather()
 
-    //const notesData = JSON.parse(localStorage.getItem('notes'))
+    const notesData = JSON.parse(localStorage.getItem('notes'))
 
-    // if (notesData) {
-    //   setNotes(notesData)
-    // }
+    if (notesData) {
+      setNotes(notesData)
+    }
   }, [])
 
   useEffect(() => {
@@ -68,6 +68,31 @@ const NoteApp = () => {
   )
 }
 
+// const App = props => {
+//   const [count, setCount] = useState(props.count)
+//   const [text, setText] = useState('')
+
+//   useEffect(() => {
+//     console.log('This should only run once!')
+//   }, [])
+
+//   useEffect(() => {
+//       console.log('useEffect ran')
+//       document.title = count
+//   }, [count])
+
+//   return (
+//     <div>
+//       <p>The current {text || 'count'} is {count}</p>
+//       <button onClick={() => setCount(count + 1)}>+1</button>
+//       <button onClick={() => setCount(count - 1)}>-1</button>
+//       <button onClick={() => setCount(props.count)}>reset</button>
+//       <input value={text} onChange={(e) => setText(e.target.value)} />
+//     </div>
+//   )
+// }
+
+// ReactDOM.render(<App count={0} />, document.getElementById('root'));
 ReactDOM.render(<NoteApp />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
